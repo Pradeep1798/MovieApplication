@@ -49,4 +49,27 @@ export const logInStyles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
+  Logincontainer: {
+    flex: 1,
+    backgroundColor: '#000',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+  },
+  LoginTitle: {
+    fontSize: 24,
+    color: globalColor.white,
+    fontWeight: 'bold',
+    marginBottom: 40,
+  },
+
+  signupTextLink: {
+    color: globalColor.white,
+    fontSize: 14,
+    marginTop: 20,
+  },
+  signupLink: {
+    color: '#008C7A',
+    fontWeight: 'bold',
+  },
 });

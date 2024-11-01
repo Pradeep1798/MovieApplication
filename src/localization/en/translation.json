@@ -1,0 +1,14 @@
+{
+  "LOGIN": {
+    "LOGIN": "Login",
+    "USERNAME": "Username",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "USERPLACE": "Enter your Email",
+    "PASSPLACE": "Enter your Password",
+    "LOGINPROMPT": "Haven't made an account?",
+    "SIGNUP": "Sign Up",
+    "ACCOUNT": "Create Account",
+    "SIGNUPPROMPT": "Already have an account?"
+  }
+}

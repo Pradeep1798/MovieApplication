@@ -27,7 +27,7 @@ const LandingScreen = () => {
         <TouchableOpacity
           style={logInStyles.signupButton}
           activeOpacity={0.8}
-          onPress={handleLogin}>
+          onPress={handleSignUp}>
           <Text style={logInStyles.signupText}>Sign Up</Text>
         </TouchableOpacity>
       </View>
