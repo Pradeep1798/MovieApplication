@@ -2,9 +2,9 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {SCREENS} from './RootScreens';
 import {RootStackScreens} from './RootStack';
-import LandingScreen from '../LandingPage';
-import SignUpScreen from '../SignUpScreen';
-import LogInScreen from '../LogInScreen';
+import LandingScreen from '../LogIn/LandingPage';
+import SignUpScreen from '../LogIn/SignUpScreen';
+import LogInScreen from '../LogIn/LogInScreen';
 
 const RootPaths = () => {
   const Stack = createNativeStackNavigator<RootStackScreens>();

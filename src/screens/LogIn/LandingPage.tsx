@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, Text, ImageBackground, TouchableOpacity} from 'react-native';
 import {logInStyles} from './LogInStyles';
-import {navigate} from './root/NavigationService';
-import {SCREENS} from './root/RootScreens';
+import {navigate} from '../root/NavigationService';
+import {SCREENS} from '../root/RootScreens';
 
 const LandingScreen = () => {
   function handleLogin() {

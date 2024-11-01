@@ -1,7 +1,7 @@
 import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
-import {navigationRef} from 'screens/LogIn/root/NavigationService';
-import RootPaths from 'screens/LogIn/root/RootPaths';
+import {navigationRef} from 'screens/root/NavigationService';
+import RootPaths from 'screens/root/RootPaths';
 
 const App = () => {
   return (
