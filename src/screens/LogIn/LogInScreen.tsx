@@ -32,6 +32,9 @@ const LoginScreen = () => {
   function handleSignUp() {
     navigate(SCREENS.SIGNUP);
   }
+  function handleTab() {
+    navigate(SCREENS.TABS);
+  }
 
   return (
     <View style={logInStyles.Logincontainer}>
@@ -63,7 +66,7 @@ const LoginScreen = () => {
         }
       />
 
-      <CustomButton Title={t('LOGIN.LOGIN')} />
+      <CustomButton Title={t('LOGIN.LOGIN')} ButtonPress={handleTab} />
       <TouchableOpacity onPress={handleSignUp}>
         <Text style={logInStyles.signupTextLink}>
           {t('LOGIN.LOGINPROMPT')}{' '}
