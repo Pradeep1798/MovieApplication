@@ -1,7 +1,7 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {SCREENS, TABSCREENS} from './RootScreens';
-import {RootStackScreens} from './RootStack';
+import {RootBottomScreens, RootStackScreens} from './RootStack';
 import LandingScreen from '../LogIn/LandingPage';
 import SignUpScreen from '../LogIn/SignUpScreen';
 import LogInScreen from '../LogIn/LogInScreen';
@@ -9,13 +9,14 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomePage from 'screens/Home/HomePage';
 import SearchPage from 'screens/Search/SearchPage';
 import FavPage from 'screens/Favourites/FavPage';
-import ProfilePage from 'screens/Profile/ProfilePage';
+import ProfilePage from 'screens/Settings/ProfilePage';
 import {Image} from 'react-native';
+import {globalColor} from 'public/globalcolor';
 
 const RootPaths = () => {
   const Stack = createNativeStackNavigator<RootStackScreens>();
 
-  const Tab = createBottomTabNavigator();
+  const Tab = createBottomTabNavigator<RootBottomScreens>();
 
   function BottomTabs() {
     return (
@@ -35,7 +36,7 @@ const RootPaths = () => {
               iconSource = focused
                 ? require('assets/Fav_InActive.png')
                 : require('assets/Fav_InActive.png');
-            } else if (route.name === 'Settings') {
+            } else if (route.name === TABSCREENS.SETTINGS) {
               iconSource = focused
                 ? require('assets/Settings_InActive.png')
                 : require('assets/Settings_InActive.png');
@@ -47,14 +48,15 @@ const RootPaths = () => {
           tabBarActiveTintColor: 'green',
           tabBarInactiveTintColor: 'gray',
           tabBarStyle: {
-            backgroundColor: '#000',
+            backgroundColor: globalColor.background,
             borderTopWidth: 0,
           },
+          headerShown: false,
         })}>
         <Tab.Screen name={TABSCREENS.HOME} component={HomePage} />
         <Tab.Screen name={TABSCREENS.SEARCH} component={SearchPage} />
         <Tab.Screen name={TABSCREENS.FAVOURITES} component={FavPage} />
-        <Tab.Screen name={TABSCREENS.PROFILE} component={ProfilePage} />
+        <Tab.Screen name={TABSCREENS.SETTINGS} component={ProfilePage} />
       </Tab.Navigator>
     );
   }

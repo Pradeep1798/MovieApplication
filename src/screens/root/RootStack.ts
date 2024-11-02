@@ -12,7 +12,7 @@ export type RootBottomScreens = {
   Home: any;
   Search: any;
   Favourites: any;
-  profile: any;
+  Settings: any;
 };
 
 export type StackNavigation = NavigationProp<RootStackScreens>;

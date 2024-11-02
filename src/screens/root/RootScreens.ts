@@ -9,5 +9,5 @@ export const TABSCREENS = {
   HOME: 'Home',
   SEARCH: 'Search',
   FAVOURITES: 'Favourites',
-  PROFILE: 'Profiles',
-};
+  SETTINGS: 'Settings',
+} as const;

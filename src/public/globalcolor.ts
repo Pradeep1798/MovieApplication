@@ -7,4 +7,7 @@ export const globalColor = {
   inputbordercolor: '#9C9C9C',
   inputtextcolor: '#000000',
   labelColor: '#008C7A',
+  MovieTitle: '#FFF',
+  background: '#000',
+  defaultloadingcolor: '#4285F4',
 };

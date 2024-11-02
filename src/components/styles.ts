@@ -45,4 +45,71 @@ export const compstyle = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
+  sectionContainer: {
+    marginBottom: 20,
+  },
+  sectionTitle: {
+    color: globalColor.MovieTitle,
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginVertical: 10,
+    marginLeft: 10,
+  },
+  movieList: {
+    paddingLeft: 10,
+  },
+  movieContainer: {
+    marginRight: 10,
+    width: 120,
+  },
+  movieImage: {
+    width: 120,
+    height: 180,
+    borderRadius: 10,
+  },
+  movieTitle: {
+    color: globalColor.MovieTitle,
+    textAlign: 'center',
+    marginTop: 5,
+  },
+  SafeAreacontainer: {
+    flex: 1,
+    backgroundColor: globalColor.background,
+    flexDirection: 'column',
+    paddingTop: 10,
+  },
+  loadingbar: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: globalColor.defaultloadingcolor,
+  },
+  headerTop: {
+    flexDirection: 'row',
+    padding: 10,
+    marginTop: 0,
+    backgroundColor: globalColor.white,
+  },
+  headerLeftImg: {
+    height: 25,
+    width: 55,
+    alignSelf: 'flex-start',
+  },
+  headerTxt: {
+    color: globalColor.white,
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    flex: 1,
+    marginEnd: 55,
+  },
+  headerleftimg: {
+    height: 25,
+    width: 25,
+    marginLeft: 5,
+  },
 });
