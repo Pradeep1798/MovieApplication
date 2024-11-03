@@ -1,8 +1,9 @@
+import CustomButton from 'components/CustomButton';
 import CustomSafeArea from 'components/CustomSafearea';
 import {genreData, MovieDetailsData, MovieDetailsRequest} from 'models/Home';
 import React, {useEffect, useState} from 'react';
 import {View, Text, Image, StyleSheet, ScrollView} from 'react-native';
-import {homeService} from 'services/ServiceExports';
+import {alertService, homeService, localStorage} from 'services/ServiceExports';
 import {
   IMAGE_BASE_URL,
   IMAGE_POSTER_URL,
@@ -12,6 +13,7 @@ import {
 const MovieDetails = ({route}: any) => {
   const [movieData, setMovieData] = useState<MovieDetailsData>();
   const [loading, setLoading] = useState(true);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const {movie} = route.params;
 
@@ -39,6 +41,32 @@ const MovieDetails = ({route}: any) => {
   const genres = movieData?.genres
     ?.map((genre: genreData) => genre.name)
     .join(', ');
+
+  const addToFavorites = async () => {
+    try {
+      const favorites = await localStorage?.GetData('favorites');
+      const favoritesList = favorites ? JSON.parse(favorites) : [];
+
+      const isAlreadyFavorite = favoritesList.some(
+        (item: MovieDetailsData) => item.id === movieData?.id,
+      );
+      if (isAlreadyFavorite) {
+        alertService?.ShowSingleActionAlert(
+          'Already in Favorites This movie is already in your favorites.',
+        );
+        return;
+      }
+
+      favoritesList.push(movieData);
+      await localStorage?.SaveData('favorites', JSON.stringify(favoritesList));
+      setIsFavorite(true);
+      alertService?.ShowSingleActionAlert(
+        'Added to Favorites. This movie has been added to your favorites.',
+      );
+    } catch (error) {
+      console.error('Error adding to favorites:', error);
+    }
+  };
 
   return (
     <CustomSafeArea
@@ -78,6 +106,10 @@ const MovieDetails = ({route}: any) => {
           <Text style={styles.overviewTitle}>Overview</Text>
           <Text style={styles.overviewText}>{movieData?.overview}</Text>
         </View>
+        <CustomButton
+          Title={isFavorite ? 'In Favorites' : 'Add to Favorites'}
+          ButtonPress={addToFavorites}
+        />
       </ScrollView>
     </CustomSafeArea>
   );
