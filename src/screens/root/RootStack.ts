@@ -6,6 +6,7 @@ export type RootStackScreens = {
   LoginPage: any;
   SignUpPage: any;
   TabsPage: any;
+  DetailsPage: any;
 };
 
 export type RootBottomScreens = {

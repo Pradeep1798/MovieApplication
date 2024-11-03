@@ -92,7 +92,7 @@ export const compstyle = StyleSheet.create({
     flexDirection: 'row',
     padding: 10,
     marginTop: 0,
-    backgroundColor: globalColor.white,
+    backgroundColor: globalColor.background,
   },
   headerLeftImg: {
     height: 25,

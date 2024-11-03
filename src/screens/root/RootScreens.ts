@@ -3,6 +3,7 @@ export const SCREENS = {
   LOGIN: 'LoginPage',
   SIGNUP: 'SignUpPage',
   TABS: 'TabsPage',
+  DETAILS: 'DetailsPage',
 } as const;
 
 export const TABSCREENS = {

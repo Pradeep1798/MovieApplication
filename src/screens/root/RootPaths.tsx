@@ -12,6 +12,7 @@ import FavPage from 'screens/Favourites/FavPage';
 import ProfilePage from 'screens/Settings/ProfilePage';
 import {Image} from 'react-native';
 import {globalColor} from 'public/globalcolor';
+import MovieDetails from 'screens/Home/MovieDetails';
 
 const RootPaths = () => {
   const Stack = createNativeStackNavigator<RootStackScreens>();
@@ -27,18 +28,18 @@ const RootPaths = () => {
             if (route.name === TABSCREENS.HOME) {
               iconSource = focused
                 ? require('assets/Home_Active.png')
-                : require('assets/Home_Active.png');
+                : require('assets/Home_InActive.png');
             } else if (route.name === TABSCREENS.SEARCH) {
               iconSource = focused
-                ? require('assets/Search_InActive.png')
+                ? require('assets/Search_Active.png')
                 : require('assets/Search_InActive.png');
             } else if (route.name === TABSCREENS.FAVOURITES) {
               iconSource = focused
-                ? require('assets/Fav_InActive.png')
+                ? require('assets/Fav_Active.png')
                 : require('assets/Fav_InActive.png');
             } else if (route.name === TABSCREENS.SETTINGS) {
               iconSource = focused
-                ? require('assets/Settings_InActive.png')
+                ? require('assets/Settings_Active.png')
                 : require('assets/Settings_InActive.png');
             }
             return (
@@ -81,6 +82,11 @@ const RootPaths = () => {
       <Stack.Screen
         name={SCREENS.TABS}
         component={BottomTabs}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name={SCREENS.DETAILS}
+        component={MovieDetails}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
