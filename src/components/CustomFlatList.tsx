@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image, FlatList} from 'react-native';
+import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
 import {compstyle} from './styles';
 import {NowPlayingData} from 'models/Master';
 import {IMAGE_BASE_URL} from 'utils/Constants';
@@ -7,17 +7,20 @@ import {IMAGE_BASE_URL} from 'utils/Constants';
 type ViewProps = {
   data: NowPlayingData[];
   title: string;
+  onMoviePress: (movie: number) => void;
 };
 
-function CutomFlatList({title, data}: ViewProps) {
+function CutomFlatList({title, data, onMoviePress}: ViewProps) {
   const renderMovie = ({item}: {item: NowPlayingData}) => (
     <View style={compstyle.movieContainer}>
-      <Image
-        source={{uri: `${IMAGE_BASE_URL}${item.poster_path}`}}
-        style={compstyle.movieImage}
-        resizeMode="cover"
-      />
-      <Text style={compstyle.movieTitle}>{item.title}</Text>
+      <TouchableOpacity onPress={() => onMoviePress(item.id)}>
+        <Image
+          source={{uri: `${IMAGE_BASE_URL}${item.poster_path}`}}
+          style={compstyle.movieImage}
+          resizeMode="cover"
+        />
+        <Text style={compstyle.movieTitle}>{item.title}</Text>
+      </TouchableOpacity>
     </View>
   );
 

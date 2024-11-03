@@ -10,12 +10,18 @@ import {Image, ScrollView} from 'react-native';
 import {masterService} from 'services/ServiceExports';
 import {ResponseStatus} from 'utils/Constants';
 import {HomeStyles} from './Styles';
+import {navigate} from 'screens/root/NavigationService';
+import {SCREENS} from 'screens/root/RootScreens';
+import {useNavigation} from '@react-navigation/native';
+import {StackNavigation} from 'screens/root/RootStack';
 
 function HomePage() {
   const [playingmovies, setPlayingMovies] = useState<NowPlayingData[]>([]);
   const [upcoming, setUpcoming] = useState<NowPlayingData[]>([]);
   const [topRated, setTopRated] = useState<NowPlayingData[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const navigate = useNavigation<StackNavigation>();
 
   useEffect(() => {
     getMasterData();
@@ -85,6 +91,10 @@ function HomePage() {
     setLoading(false);
   }
 
+  const handleMoviePress = (movie: number) => {
+    navigate.navigate(SCREENS.DETAILS, {movie});
+  };
+
   return (
     <CustomSafeArea ShowHideLoading={loading}>
       <ScrollView>
@@ -93,9 +103,21 @@ function HomePage() {
           style={HomeStyles.headerImage}
         />
 
-        <CutomFlatList title="Now Playing" data={playingmovies} />
-        <CutomFlatList title="Top Rated" data={topRated} />
-        <CutomFlatList title="Upcoming" data={upcoming} />
+        <CutomFlatList
+          title="Now Playing"
+          data={playingmovies}
+          onMoviePress={handleMoviePress}
+        />
+        <CutomFlatList
+          title="Top Rated"
+          data={topRated}
+          onMoviePress={handleMoviePress}
+        />
+        <CutomFlatList
+          title="Upcoming"
+          data={upcoming}
+          onMoviePress={handleMoviePress}
+        />
       </ScrollView>
     </CustomSafeArea>
   );

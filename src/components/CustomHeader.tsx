@@ -21,7 +21,7 @@ function CustomHeader({
       <TouchableOpacity onPress={onPress} style={compstyle.headerLeftImg}>
         <View style={compstyle.headerLeftImg}>
           <Image
-            source={require('assets/ic_arrow_back.png')}
+            source={require('assets/Arrow_Left.png')}
             style={compstyle.headerleftimg}
           />
         </View>
