@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {alertService} from 'services/ServiceExports';
 import {APIURL} from 'utils/Constants';
 
 const AxiosInstance = axios.create({
@@ -15,7 +16,15 @@ AxiosInstance.interceptors.response.use(
   response => response.data,
   error => {
     console.error('API Error:', error);
-    return Promise.reject(error);
+    if (error.message === 'NO_INTERNET') {
+      alertService.ShowSingleActionAlert('Check Your Internet Connection');
+      return Promise.reject(error);
+    } else if (error.response?.status >= 500) {
+      alertService.ShowSingleActionAlert('Server is Unreachable');
+      return Promise.reject(error);
+    } else {
+      return Promise.reject(error);
+    }
   },
 );
 

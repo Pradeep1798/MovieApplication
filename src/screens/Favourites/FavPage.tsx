@@ -44,7 +44,7 @@ const Favoritespage = () => {
         <Text style={FavStyles.Pagetitle}>{t('TAB.FAVOURITES')}</Text>
       </View>
       <ScrollView>
-        {favorites.length > 0 ? (
+        {favorites?.length > 0 ? (
           <>
             {favorites.map(item =>
               item ? (

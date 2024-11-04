@@ -38,5 +38,7 @@
     "APPEARANCE": "Appearance",
     "HELP": "Help"
   },
-  "FIELD_MSG": "Inactive"
+  "FIELD_MSG": "Inactive",
+  "OPTIONS": "Options",
+  "LOGOUT": "Logout"
 }
