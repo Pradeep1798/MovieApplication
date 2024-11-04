@@ -12,12 +12,14 @@ import {SCREENS} from 'screens/root/RootScreens';
 const Favoritespage = () => {
   const [favorites, setFavorites] = useState<MovieDetailsData[]>([]);
   const navigate = useNavigation<StackNavigation>();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getFavorites();
   }, []);
 
   const getFavorites = async () => {
+    setLoading(true);
     try {
       const favorites = await localStorage?.GetData('favorites');
       const favMovie = favorites ? JSON.parse(favorites) : undefined;
@@ -27,6 +29,7 @@ const Favoritespage = () => {
     } catch (error) {
       console.error('Error retrieving favorites:', error);
     }
+    setLoading(false);
   };
 
   const handleMoviePress = (movie: number) => {
@@ -34,7 +37,7 @@ const Favoritespage = () => {
   };
 
   return (
-    <CustomSafeArea>
+    <CustomSafeArea ShowHideLoading={loading}>
       <View style={FavStyles.container}>
         <Text style={FavStyles.Pagetitle}>Favourites</Text>
       </View>
