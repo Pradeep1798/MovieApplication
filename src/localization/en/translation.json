@@ -1,0 +1,44 @@
+{
+  "LOGIN": {
+    "LOGIN": "Login",
+    "USERNAME": "Username",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "USERPLACE": "Enter your Email",
+    "PASSPLACE": "Enter your Password",
+    "LOGINPROMPT": "Haven't made an account?",
+    "SIGNUP": "Sign Up",
+    "ACCOUNT": "Create Account",
+    "SIGNUPPROMPT": "Already have an account?"
+  },
+  "TAB": {
+    "HOME": "Home",
+    "SEARCH": "Search",
+    "FAVOURITES": "Favourites",
+    "SETTINGS": "Settings"
+  },
+  "HOME": {
+    "NOWPLAYING": "Now Playing",
+    "TOPRATED": "Top Rated",
+    "UPCOMING": "Upcoming",
+    "NORECORDS": "No Records Found"
+  },
+  "MOVIEDETAILS": {
+    "DATE": "Release Date",
+    "RUNTIME": "Runtime",
+    "MINUTES": "minutes",
+    "GENRES": "Geners",
+    "VOTES": "votes",
+    "OVERVIEW": "Overview",
+    "ADDFAV": "Add to Favourites",
+    "INFAV": "In Favourites"
+  },
+  "SETTINGS": {
+    "ACCOUNT": "Account",
+    "APPEARANCE": "Appearance",
+    "HELP": "Help"
+  },
+  "FIELD_MSG": "Inactive",
+  "OPTIONS": "Options",
+  "LOGOUT": "Logout"
+}
