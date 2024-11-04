@@ -1,6 +1,7 @@
 import {View, Text, Modal, TouchableOpacity, Image} from 'react-native';
 import {ProfileStyles} from './Styles';
 import {useTranslation} from 'react-i18next';
+import {userDetails} from 'services/StoreProvider/Store';
 
 interface ProfileModalProps {
   isVisible?: boolean;
@@ -14,6 +15,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
   onLogout,
 }) => {
   const {t} = useTranslation();
+  const {toggleTheme} = userDetails();
 
   return (
     <>
@@ -45,6 +47,11 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
               style={ProfileStyles.modalOption}
               onPress={onLogout}>
               <Text style={ProfileStyles.modalOptionText}>{t('LOGOUT')}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={ProfileStyles.modalOption}
+              onPress={toggleTheme}>
+              <Text style={ProfileStyles.modalOptionText}>Change Theme</Text>
             </TouchableOpacity>
           </View>
         </View>

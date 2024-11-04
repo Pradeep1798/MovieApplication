@@ -1,24 +1,25 @@
 import CustomSafeArea from 'components/CustomSafearea';
 import {MovieDetailsData} from 'models/Home';
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {View, Text, Image, ScrollView, TouchableOpacity} from 'react-native';
 import {localStorage} from 'services/ServiceExports';
 import {IMAGE_BASE_URL} from 'utils/Constants';
 import {FavStyles} from './Styles';
-import {useNavigation} from '@react-navigation/native';
-import {StackNavigation} from 'screens/root/RootStack';
 import {SCREENS} from 'screens/root/RootScreens';
 import {useTranslation} from 'react-i18next';
+import {navigate} from 'screens/root/NavigationService';
+import {useFocusEffect} from '@react-navigation/native';
 
 const Favoritespage = () => {
   const [favorites, setFavorites] = useState<MovieDetailsData[]>([]);
-  const navigate = useNavigation<StackNavigation>();
   const [loading, setLoading] = useState(true);
   const {t} = useTranslation();
 
-  useEffect(() => {
-    getFavorites();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      getFavorites();
+    }, []),
+  );
 
   const getFavorites = async () => {
     setLoading(true);
@@ -35,7 +36,7 @@ const Favoritespage = () => {
   };
 
   const handleMoviePress = (movie: number) => {
-    navigate.navigate(SCREENS.DETAILS, {movie});
+    navigate(SCREENS.DETAILS, {movie});
   };
 
   return (

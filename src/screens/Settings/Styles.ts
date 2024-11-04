@@ -58,7 +58,7 @@ export const ProfileStyles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   modalContainer: {
-    backgroundColor: 'white',
+    backgroundColor: globalColor.white,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     padding: 20,

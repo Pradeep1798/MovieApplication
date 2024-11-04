@@ -20,14 +20,6 @@ const ProfilePage = () => {
     replace(SCREENS.LOGIN);
   };
 
-  const handleSelectLanguage = () => {
-    console.log('Select Language');
-  };
-
-  const handleChangeTheme = (theme: string) => {
-    console.log(`Changing theme to ${theme}`);
-  };
-
   const toggleModal = () => {
     setModalVisible(!modalVisible);
   };

@@ -4,6 +4,8 @@ import {useNavigation} from '@react-navigation/native';
 import {StackNavigation} from 'screens/root/RootStack';
 import {compstyle} from './styles';
 import CustomHeader from './CustomHeader';
+import {userDetails} from 'services/StoreProvider/Store';
+import {globalColor} from 'public/globalcolor';
 
 interface ViewProps {
   ShowHideLoading?: boolean;
@@ -19,13 +21,22 @@ function CustomSafeArea({
   headerTitle = '',
 }: ViewProps) {
   const nav = useNavigation<StackNavigation>();
+  const {isDarkTheme} = userDetails();
 
   function BackPressed() {
     nav.goBack();
   }
   return (
     <>
-      <SafeAreaView style={compstyle.SafeAreacontainer}>
+      <SafeAreaView
+        style={[
+          compstyle.SafeAreacontainer,
+          {
+            backgroundColor: isDarkTheme
+              ? globalColor.background
+              : globalColor.white,
+          },
+        ]}>
         {ShowHideHeader && (
           <CustomHeader title={headerTitle} BackPressed={BackPressed} />
         )}

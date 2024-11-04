@@ -16,8 +16,7 @@ import {SearchStyles} from './Styles';
 import {useTranslation} from 'react-i18next';
 import {userDetails} from 'services/StoreProvider/Store';
 import {SCREENS} from 'screens/root/RootScreens';
-import {StackNavigation} from 'screens/root/RootStack';
-import {useNavigation} from '@react-navigation/native';
+import {navigate} from 'screens/root/NavigationService';
 
 const SearchPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -25,7 +24,6 @@ const SearchPage = () => {
   const [loading, setLoading] = useState(true);
   const {t} = useTranslation();
   const {language} = userDetails();
-  const navigate = useNavigation<StackNavigation>();
 
   async function fetchMovies(query: string) {
     setLoading(true);
@@ -56,7 +54,7 @@ const SearchPage = () => {
   };
 
   const handleMoviePress = (movie: number) => {
-    navigate.navigate(SCREENS.DETAILS, {movie});
+    navigate(SCREENS.DETAILS, {movie});
   };
 
   return (

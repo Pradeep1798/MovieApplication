@@ -11,17 +11,15 @@ import {masterService} from 'services/ServiceExports';
 import {Language, ResponseStatus} from 'utils/Constants';
 import {HomeStyles} from './Styles';
 import {SCREENS} from 'screens/root/RootScreens';
-import {useNavigation} from '@react-navigation/native';
-import {StackNavigation} from 'screens/root/RootStack';
 import {useTranslation} from 'react-i18next';
 import {userDetails} from 'services/StoreProvider/Store';
+import {navigate} from 'screens/root/NavigationService';
 
 function HomePage() {
   const [playingmovies, setPlayingMovies] = useState<NowPlayingData[]>([]);
   const [upcoming, setUpcoming] = useState<NowPlayingData[]>([]);
   const [topRated, setTopRated] = useState<NowPlayingData[]>([]);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigation<StackNavigation>();
   const {t} = useTranslation();
   const {language} = userDetails();
 
@@ -94,7 +92,7 @@ function HomePage() {
   }
 
   const handleMoviePress = (movie: number) => {
-    navigate.navigate(SCREENS.DETAILS, {movie});
+    navigate(SCREENS.DETAILS, {movie});
   };
 
   return (

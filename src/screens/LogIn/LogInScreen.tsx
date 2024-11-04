@@ -5,7 +5,7 @@ import {View, Text, TouchableOpacity} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import CustomButton from 'components/CustomButton';
 import {logInStyles} from './LogInStyles';
-import {navigate} from 'screens/root/NavigationService';
+import {navigate, replace} from 'screens/root/NavigationService';
 import {SCREENS} from 'screens/root/RootScreens';
 import {userDetails} from 'services/StoreProvider/Store';
 import CustomSafeArea from 'components/CustomSafearea';
@@ -47,7 +47,7 @@ const LoginScreen = () => {
     }
     if (isValid) {
       setEmailId(email);
-      navigate(SCREENS.TABS);
+      replace(SCREENS.TABS);
       resetform();
     } else {
       console.log('Field Errors', isValid);

@@ -74,7 +74,6 @@ export const compstyle = StyleSheet.create({
   },
   SafeAreacontainer: {
     flex: 1,
-    backgroundColor: globalColor.background,
     flexDirection: 'column',
     paddingTop: 10,
   },
