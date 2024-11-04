@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, StyleSheet, FlatList, Image} from 'react-native';
-import axios from 'axios';
+import {View, Text, TextInput, Image, ScrollView} from 'react-native';
 import {NowPlayingData} from 'models/Master';
 import {IMAGE_BASE_URL, ResponseStatus} from 'utils/Constants';
 import {searchService} from 'services/ServiceExports';
@@ -11,8 +10,10 @@ import {SearchStyles} from './Styles';
 const SearchPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [results, setResults] = useState<NowPlayingData[]>([]);
+  const [loading, setLoading] = useState(true);
 
   async function fetchMovies(query: string) {
+    setLoading(true);
     const data: SearchMovieRequest = {
       query,
       include_adult: false,
@@ -27,6 +28,7 @@ const SearchPage = () => {
     ) {
       setResults(searchMovie.data.results);
     }
+    setLoading(false);
   }
 
   const handleSearch = (query: string) => {
@@ -39,34 +41,36 @@ const SearchPage = () => {
   };
 
   return (
-    <CustomSafeArea>
-      <View style={SearchStyles.container}>
-        <Text style={SearchStyles.title}>Search</Text>
-        <View style={SearchStyles.searchContainer}>
-          <TextInput
-            style={SearchStyles.input}
-            placeholder="Search for a title..."
-            placeholderTextColor="#666"
-            value={searchQuery}
-            onChangeText={handleSearch}
-          />
-          <View style={SearchStyles.searchIcon}>
-            <Image source={require('assets/Search_Active.png')} />
-          </View>
-        </View>
-        {results.map(item => (
-          <View key={item.id} style={SearchStyles.favoriteItem}>
-            <Image
-              source={{uri: `${IMAGE_BASE_URL}${item.poster_path}`}}
-              style={SearchStyles.poster}
+    <CustomSafeArea ShowHideLoading={loading}>
+      <ScrollView>
+        <View style={SearchStyles.container}>
+          <Text style={SearchStyles.title}>Search</Text>
+          <View style={SearchStyles.searchContainer}>
+            <TextInput
+              style={SearchStyles.input}
+              placeholder="Search for a title..."
+              placeholderTextColor="#666"
+              value={searchQuery}
+              onChangeText={handleSearch}
             />
-            <View style={SearchStyles.details}>
-              <Text style={SearchStyles.title}>{item.title}</Text>
-              <Text style={SearchStyles.year}>{item.release_date}</Text>
+            <View style={SearchStyles.searchIcon}>
+              <Image source={require('assets/Search_Active.png')} />
             </View>
           </View>
-        ))}
-      </View>
+          {results.map(item => (
+            <View key={item.id} style={SearchStyles.favoriteItem}>
+              <Image
+                source={{uri: `${IMAGE_BASE_URL}${item.poster_path}`}}
+                style={SearchStyles.poster}
+              />
+              <View style={SearchStyles.details}>
+                <Text style={SearchStyles.title}>{item.title}</Text>
+                <Text style={SearchStyles.year}>{item.release_date}</Text>
+              </View>
+            </View>
+          ))}
+        </View>
+      </ScrollView>
     </CustomSafeArea>
   );
 };

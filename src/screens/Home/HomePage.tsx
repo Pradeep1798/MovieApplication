@@ -10,7 +10,6 @@ import {Image, ScrollView} from 'react-native';
 import {masterService} from 'services/ServiceExports';
 import {ResponseStatus} from 'utils/Constants';
 import {HomeStyles} from './Styles';
-import {navigate} from 'screens/root/NavigationService';
 import {SCREENS} from 'screens/root/RootScreens';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigation} from 'screens/root/RootStack';

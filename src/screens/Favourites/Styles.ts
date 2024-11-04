@@ -1,39 +1,21 @@
 import {globalColor} from 'public/globalcolor';
 import {StyleSheet} from 'react-native';
 
-export const SearchStyles = StyleSheet.create({
+export const FavStyles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    // paddingTop: 20,
   },
-  title: {
+  Pagetitle: {
     color: globalColor.white,
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 20,
   },
-  searchContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#333',
-    borderRadius: 20,
-    paddingHorizontal: 10,
-    width: '90%',
-  },
-  input: {
-    flex: 1,
-    color: globalColor.white,
-    padding: 10,
-  },
-  searchIcon: {
-    marginLeft: 10,
-  },
-
   favoriteItem: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 16,
-    marginLeft: 20,
+    marginLeft: 16,
   },
   poster: {
     width: 70,
@@ -44,9 +26,13 @@ export const SearchStyles = StyleSheet.create({
     marginLeft: 15,
     flex: 1,
   },
-
+  title: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
   year: {
-    color: globalColor.white,
+    color: '#BBBBBB',
     fontSize: 14,
   },
 });
