@@ -1,7 +1,7 @@
 import i18n from 'i18next';
 import {initReactI18next} from 'react-i18next';
 import en from './en/translation.json';
-// import ta from './ta/translation.json';
+import ja from './ja/translation.json';
 
 i18n
   .use(initReactI18next)
@@ -9,7 +9,7 @@ i18n
     compatibilityJSON: 'v3',
     resources: {
       en: {translation: en},
-      // ta: {translation: ta},
+      ja: {translation: ja},
     },
     lng: 'en',
     fallbackLng: 'en',

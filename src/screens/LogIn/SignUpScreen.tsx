@@ -10,7 +10,7 @@ import {navigate} from 'screens/root/NavigationService';
 
 const SignUpScreen = () => {
   const [email, setEmail] = useState<string>('');
-  const [UserName, setUserName] = useState<string>('');
+  const [userName, setUserName] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [hidePassword, setHidePassword] = useState<boolean>(true);
 
@@ -51,7 +51,7 @@ const SignUpScreen = () => {
       />
       <CustomTextInput
         InputRules={(new InputRules().InputRulesData.keyboardType = 'default')}
-        Value={email}
+        Value={userName}
         Title={t('LOGIN.USERNAME')}
         placeholder={t('LOGIN.USERPLACE')}
         onChangeText={onChangeText}
@@ -73,7 +73,7 @@ const SignUpScreen = () => {
         }
       />
 
-      <CustomButton Title={t('LOGIN.LOGIN')} />
+      <CustomButton Title={t('LOGIN.SIGNUP')} ButtonPress={handleLogin} />
       <TouchableOpacity onPress={handleLogin}>
         <Text style={logInStyles.signupTextLink}>
           {t('LOGIN.SIGNUPPROMPT')}{' '}

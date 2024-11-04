@@ -1,23 +1,38 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, Image, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 import {NowPlayingData} from 'models/Master';
-import {IMAGE_BASE_URL, ResponseStatus} from 'utils/Constants';
+import {IMAGE_BASE_URL, Language, ResponseStatus} from 'utils/Constants';
 import {searchService} from 'services/ServiceExports';
 import {SearchMovieRequest} from 'models/Search';
 import CustomSafeArea from 'components/CustomSafearea';
 import {SearchStyles} from './Styles';
+import {useTranslation} from 'react-i18next';
+import {userDetails} from 'services/StoreProvider/Store';
+import {SCREENS} from 'screens/root/RootScreens';
+import {StackNavigation} from 'screens/root/RootStack';
+import {useNavigation} from '@react-navigation/native';
 
 const SearchPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [results, setResults] = useState<NowPlayingData[]>([]);
   const [loading, setLoading] = useState(true);
+  const {t} = useTranslation();
+  const {language} = userDetails();
+  const navigate = useNavigation<StackNavigation>();
 
   async function fetchMovies(query: string) {
     setLoading(true);
     const data: SearchMovieRequest = {
       query,
       include_adult: false,
-      language: 'en-US',
+      language: language === 'en' ? Language.ENGLISH : Language.JAPANESE,
       page: 1,
     };
     const searchMovie = await searchService.getSearchMovie(data);
@@ -40,11 +55,15 @@ const SearchPage = () => {
     }
   };
 
+  const handleMoviePress = (movie: number) => {
+    navigate.navigate(SCREENS.DETAILS, {movie});
+  };
+
   return (
     <CustomSafeArea ShowHideLoading={loading}>
       <ScrollView>
         <View style={SearchStyles.container}>
-          <Text style={SearchStyles.title}>Search</Text>
+          <Text style={SearchStyles.title}>{t('TAB.SEARCH')}</Text>
           <View style={SearchStyles.searchContainer}>
             <TextInput
               style={SearchStyles.input}
@@ -58,16 +77,22 @@ const SearchPage = () => {
             </View>
           </View>
           {results.map(item => (
-            <View key={item.id} style={SearchStyles.favoriteItem}>
+            <TouchableOpacity
+              key={item.id}
+              onPress={() => handleMoviePress(item.id)}
+              style={SearchStyles.favoriteItem}>
+              {/* <View key={item.id}> */}
               <Image
                 source={{uri: `${IMAGE_BASE_URL}${item.poster_path}`}}
                 style={SearchStyles.poster}
               />
+
               <View style={SearchStyles.details}>
                 <Text style={SearchStyles.title}>{item.title}</Text>
                 <Text style={SearchStyles.year}>{item.release_date}</Text>
               </View>
-            </View>
+              {/* </View> */}
+            </TouchableOpacity>
           ))}
         </View>
       </ScrollView>

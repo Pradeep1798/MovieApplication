@@ -8,11 +8,13 @@ import {FavStyles} from './Styles';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigation} from 'screens/root/RootStack';
 import {SCREENS} from 'screens/root/RootScreens';
+import {useTranslation} from 'react-i18next';
 
 const Favoritespage = () => {
   const [favorites, setFavorites] = useState<MovieDetailsData[]>([]);
   const navigate = useNavigation<StackNavigation>();
   const [loading, setLoading] = useState(true);
+  const {t} = useTranslation();
 
   useEffect(() => {
     getFavorites();
@@ -39,14 +41,16 @@ const Favoritespage = () => {
   return (
     <CustomSafeArea ShowHideLoading={loading}>
       <View style={FavStyles.container}>
-        <Text style={FavStyles.Pagetitle}>Favourites</Text>
+        <Text style={FavStyles.Pagetitle}>{t('TAB.FAVOURITES')}</Text>
       </View>
       <ScrollView>
         {favorites.length > 0 ? (
           <>
             {favorites.map(item =>
               item ? (
-                <TouchableOpacity onPress={() => handleMoviePress(item.id)}>
+                <TouchableOpacity
+                  key={item.id}
+                  onPress={() => handleMoviePress(item.id)}>
                   <View key={item.id} style={FavStyles.favoriteItem}>
                     <Image
                       source={{uri: `${IMAGE_BASE_URL}${item.poster_path}`}}
@@ -66,7 +70,7 @@ const Favoritespage = () => {
             )}
           </>
         ) : (
-          <Text style={FavStyles.title}>No Records Found</Text>
+          <Text style={FavStyles.title}>{t('HOME.NORECORDS')}</Text>
         )}
       </ScrollView>
     </CustomSafeArea>

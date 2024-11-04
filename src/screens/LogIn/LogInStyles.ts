@@ -69,7 +69,19 @@ export const logInStyles = StyleSheet.create({
     marginTop: 20,
   },
   signupLink: {
-    color: '#008C7A',
+    color: globalColor.labelColor,
     fontWeight: 'bold',
+  },
+  languageButton: {
+    padding: 10,
+    backgroundColor: globalColor.primaryButton,
+    borderRadius: 5,
+    marginBottom: 20,
+    marginTop: 20,
+  },
+  languageButtonText: {
+    color: globalColor.white,
+    fontSize: 16,
+    textAlign: 'center',
   },
 });

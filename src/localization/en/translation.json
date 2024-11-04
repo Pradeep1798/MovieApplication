@@ -10,5 +10,32 @@
     "SIGNUP": "Sign Up",
     "ACCOUNT": "Create Account",
     "SIGNUPPROMPT": "Already have an account?"
+  },
+  "TAB": {
+    "HOME": "Home",
+    "SEARCH": "Search",
+    "FAVOURITES": "Favourites",
+    "SETTINGS": "Settings"
+  },
+  "HOME": {
+    "NOWPLAYING": "Now Playing",
+    "TOPRATED": "Top Rated",
+    "UPCOMING": "Upcoming",
+    "NORECORDS": "No Records Found"
+  },
+  "MOVIEDETAILS": {
+    "DATE": "Release Date",
+    "RUNTIME": "Runtime",
+    "MINUTES": "minutes",
+    "GENRES": "Geners",
+    "VOTES": "votes",
+    "OVERVIEW": "Overview",
+    "ADDFAV": "Add to Favourites",
+    "INFAV": "In Favourites"
+  },
+  "SETTINGS": {
+    "ACCOUNT": "Account",
+    "APPEARANCE": "Appearance",
+    "HELP": "Help"
   }
 }

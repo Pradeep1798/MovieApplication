@@ -1,0 +1,41 @@
+{
+  "LOGIN": {
+    "LOGIN": "ログイン",
+    "USERNAME": "ユーザー名",
+    "EMAIL": "メールアドレス",
+    "PASSWORD": "パスワード",
+    "USERPLACE": "メールアドレスを入力してください",
+    "PASSPLACE": "パスワードを入力してください",
+    "LOGINPROMPT": "アカウントをお持ちではありませんか？",
+    "SIGNUP": "サインアップ",
+    "ACCOUNT": "アカウントを作成する",
+    "SIGNUPPROMPT": "既にアカウントをお持ちですか？"
+  },
+  "TAB": {
+    "HOME": "ホーム",
+    "SEARCH": "検索",
+    "FAVOURITES": "お気に入り",
+    "SETTINGS": "設定"
+  },
+  "HOME": {
+    "NOWPLAYING": "上映中",
+    "TOPRATED": "高評価",
+    "UPCOMING": "近日公開",
+    "NORECORDS": "記録が見つかりません"
+  },
+  "MOVIEDETAILS": {
+    "DATE": "公開日",
+    "RUNTIME": "上映時間",
+    "MINUTES": "分",
+    "GENRES": "ジャンル",
+    "VOTES": "投票",
+    "OVERVIEW": "概要",
+    "ADDFAV": "お気に入りに追加",
+    "INFAV": "お気に入りに追加済み"
+  },
+  "SETTINGS": {
+    "ACCOUNT": "アカウント",
+    "APPEARANCE": "外観",
+    "HELP": "ヘルプ"
+  }
+}

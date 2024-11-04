@@ -8,19 +8,22 @@ import {
 import React, {useEffect, useState} from 'react';
 import {Image, ScrollView} from 'react-native';
 import {masterService} from 'services/ServiceExports';
-import {ResponseStatus} from 'utils/Constants';
+import {Language, ResponseStatus} from 'utils/Constants';
 import {HomeStyles} from './Styles';
 import {SCREENS} from 'screens/root/RootScreens';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigation} from 'screens/root/RootStack';
+import {useTranslation} from 'react-i18next';
+import {userDetails} from 'services/StoreProvider/Store';
 
 function HomePage() {
   const [playingmovies, setPlayingMovies] = useState<NowPlayingData[]>([]);
   const [upcoming, setUpcoming] = useState<NowPlayingData[]>([]);
   const [topRated, setTopRated] = useState<NowPlayingData[]>([]);
   const [loading, setLoading] = useState(true);
-
   const navigate = useNavigation<StackNavigation>();
+  const {t} = useTranslation();
+  const {language} = userDetails();
 
   useEffect(() => {
     getMasterData();
@@ -31,7 +34,7 @@ function HomePage() {
     const nowPlayingRequest: NowPlayingRequestDetails = {
       include_adult: false,
       include_video: false,
-      language: 'en-US',
+      language: language === 'en' ? Language.ENGLISH : Language.JAPANESE,
       page: 1,
       sort_by: 'popularity.desc',
       with_release_type: '2|3',
@@ -54,7 +57,7 @@ function HomePage() {
     const upcomingRequest: UpcomingRequestDetails = {
       include_adult: false,
       include_video: false,
-      language: 'en-US',
+      language: language === 'en' ? Language.ENGLISH : Language.JAPANESE,
       page: 1,
       sort_by: 'popularity.desc',
       with_release_type: '2|3',
@@ -72,7 +75,7 @@ function HomePage() {
     const topRatedRequest: UpcomingRequestDetails = {
       include_adult: false,
       include_video: false,
-      language: 'en-US',
+      language: language === 'en' ? Language.ENGLISH : Language.JAPANESE,
       page: 1,
       sort_by: 'popularity.desc',
       with_release_type: '2|3',
@@ -103,17 +106,17 @@ function HomePage() {
         />
 
         <CutomFlatList
-          title="Now Playing"
+          title={t('HOME.NOWPLAYING')}
           data={playingmovies}
           onMoviePress={handleMoviePress}
         />
         <CutomFlatList
-          title="Top Rated"
+          title={t('HOME.TOPRATED')}
           data={topRated}
           onMoviePress={handleMoviePress}
         />
         <CutomFlatList
-          title="Upcoming"
+          title={t('HOME.UPCOMING')}
           data={upcoming}
           onMoviePress={handleMoviePress}
         />

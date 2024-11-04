@@ -13,11 +13,14 @@ import ProfilePage from 'screens/Settings/ProfilePage';
 import {Image} from 'react-native';
 import {globalColor} from 'public/globalcolor';
 import MovieDetails from 'screens/Home/MovieDetails';
+import {useTranslation} from 'react-i18next';
 
 const RootPaths = () => {
   const Stack = createNativeStackNavigator<RootStackScreens>();
 
   const Tab = createBottomTabNavigator<RootBottomScreens>();
+
+  const {t} = useTranslation();
 
   function BottomTabs() {
     return (
@@ -54,10 +57,26 @@ const RootPaths = () => {
           },
           headerShown: false,
         })}>
-        <Tab.Screen name={TABSCREENS.HOME} component={HomePage} />
-        <Tab.Screen name={TABSCREENS.SEARCH} component={SearchPage} />
-        <Tab.Screen name={TABSCREENS.FAVOURITES} component={FavPage} />
-        <Tab.Screen name={TABSCREENS.SETTINGS} component={ProfilePage} />
+        <Tab.Screen
+          name={TABSCREENS.HOME}
+          component={HomePage}
+          options={{title: t('TAB.HOME')}}
+        />
+        <Tab.Screen
+          name={TABSCREENS.SEARCH}
+          component={SearchPage}
+          options={{title: t('TAB.SEARCH')}}
+        />
+        <Tab.Screen
+          name={TABSCREENS.FAVOURITES}
+          component={FavPage}
+          options={{title: t('TAB.FAVOURITES')}}
+        />
+        <Tab.Screen
+          name={TABSCREENS.SETTINGS}
+          component={ProfilePage}
+          options={{title: t('TAB.SETTINGS')}}
+        />
       </Tab.Navigator>
     );
   }

@@ -7,13 +7,15 @@ import CustomButton from 'components/CustomButton';
 import {logInStyles} from './LogInStyles';
 import {navigate} from 'screens/root/NavigationService';
 import {SCREENS} from 'screens/root/RootScreens';
+import {userDetails} from 'services/StoreProvider/Store';
 
 const LoginScreen = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [hidePassword, setHidePassword] = useState<boolean>(true);
-
-  const {t} = useTranslation();
+  const [selectedLanguage, setSelectedLanguage] = useState<string>('en');
+  const {setEmailId, setLanguage} = userDetails();
+  const {t, i18n} = useTranslation();
 
   function onChangeText(type: string, text: string) {
     console.log(type, text);
@@ -33,9 +35,15 @@ const LoginScreen = () => {
     navigate(SCREENS.SIGNUP);
   }
   function handleTab() {
+    setEmailId(email);
     navigate(SCREENS.TABS);
   }
 
+  const changeLanguage = (lang: string) => {
+    setSelectedLanguage(lang);
+    i18n.changeLanguage(lang);
+    setLanguage(lang);
+  };
   return (
     <View style={logInStyles.Logincontainer}>
       <Text style={logInStyles.LoginTitle}>{t('LOGIN.LOGIN')}</Text>
@@ -71,6 +79,15 @@ const LoginScreen = () => {
         <Text style={logInStyles.signupTextLink}>
           {t('LOGIN.LOGINPROMPT')}{' '}
           <Text style={logInStyles.signupLink}> {t('LOGIN.SIGNUP')}</Text>
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => changeLanguage(selectedLanguage === 'en' ? 'ja' : 'en')}
+        style={logInStyles.languageButton}>
+        <Text style={logInStyles.languageButtonText}>
+          {selectedLanguage === 'en'
+            ? 'Switch to Japanese'
+            : 'Switch to English'}
         </Text>
       </TouchableOpacity>
     </View>

@@ -7,14 +7,19 @@ import {alertService, homeService, localStorage} from 'services/ServiceExports';
 import {
   IMAGE_BASE_URL,
   IMAGE_POSTER_URL,
+  Language,
   ResponseStatus,
 } from 'utils/Constants';
 import {HomeStyles} from './Styles';
+import {useTranslation} from 'react-i18next';
+import {userDetails} from 'services/StoreProvider/Store';
 
 const MovieDetails = ({route}: any) => {
   const [movieData, setMovieData] = useState<MovieDetailsData>();
   const [loading, setLoading] = useState(true);
   const [isFavorite, setIsFavorite] = useState(false);
+  const {t} = useTranslation();
+  const {language} = userDetails();
 
   const {movie} = route.params;
 
@@ -26,7 +31,7 @@ const MovieDetails = ({route}: any) => {
     setLoading(true);
     const data: MovieDetailsRequest = {
       movie_id: movie,
-      language: 'en-US',
+      language: language === 'en' ? Language.ENGLISH : Language.JAPANESE,
     };
     const MovieDetails = await homeService.getMovieDetails(data);
     console.log('MovieDetails', MovieDetails);
@@ -112,25 +117,33 @@ const MovieDetails = ({route}: any) => {
           <View style={HomeStyles.infoContainer}>
             <Text style={HomeStyles.MovieTitle}>{movieData?.title}</Text>
             <Text style={HomeStyles.releaseDate}>
-              Release Date: {movieData?.release_date}
+              {t('MOVIEDETAILS.DATE')}: {movieData?.release_date}
             </Text>
             <Text style={HomeStyles.runtime}>
-              Runtime: {movieData?.runtime} minutes
+              {t('MOVIEDETAILS.RUNTIME')}: {movieData?.runtime}{' '}
+              {t('MOVIEDETAILS.MINUTES')}
             </Text>
-            <Text style={HomeStyles.genre}>Genres: {genres}</Text>
+            <Text style={HomeStyles.genre}>
+              {t('MOVIEDETAILS.GENRES')}: {genres}
+            </Text>
             <Text style={HomeStyles.rating}>
-              ⭐ {movieData?.vote_average} / 10 ({movieData?.vote_count} votes)
+              ⭐ {movieData?.vote_average} / 10 ({movieData?.vote_count}{' '}
+              {t('MOVIEDETAILS.VOTES')})
             </Text>
           </View>
         </View>
 
         <View style={HomeStyles.overviewContainer}>
-          <Text style={HomeStyles.overviewTitle}>Overview</Text>
+          <Text style={HomeStyles.overviewTitle}>
+            {t('MOVIEDETAILS.OVERVIEW')}
+          </Text>
           <Text style={HomeStyles.overviewText}>{movieData?.overview}</Text>
         </View>
         <View style={{padding: 20}}>
           <CustomButton
-            Title={isFavorite ? 'In Favorites' : 'Add to Favorites'}
+            Title={
+              isFavorite ? t('MOVIEDETAILS.INFAV') : t('MOVIEDETAILS.ADDFAV')
+            }
             ButtonPress={addToFavorites}
           />
         </View>
