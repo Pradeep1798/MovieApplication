@@ -4,7 +4,7 @@ type UserContextType = {
   usernameId: string;
   emailId: string;
   language: string;
-  setUsername: (username: string) => void;
+  setUsernameId: (username: string) => void;
   setEmailId: (email: string) => void;
   setLanguage: (language: string) => void;
 };
@@ -14,7 +14,7 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 export const StoreProvider: React.FC<{children: React.ReactNode}> = ({
   children,
 }) => {
-  const [usernameId, setUsername] = useState<string>('');
+  const [usernameId, setUsernameId] = useState<string>('');
   const [emailId, setEmailId] = useState<string>('');
   const [language, setLanguage] = useState<string>('en');
 
@@ -24,7 +24,7 @@ export const StoreProvider: React.FC<{children: React.ReactNode}> = ({
         usernameId,
         emailId,
         language,
-        setUsername,
+        setUsernameId,
         setEmailId,
         setLanguage,
       }}>

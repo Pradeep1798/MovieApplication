@@ -8,6 +8,8 @@ import {logInStyles} from './LogInStyles';
 import {navigate} from 'screens/root/NavigationService';
 import {SCREENS} from 'screens/root/RootScreens';
 import {userDetails} from 'services/StoreProvider/Store';
+import CustomSafeArea from 'components/CustomSafearea';
+import {alertService} from 'services/ServiceExports';
 
 const LoginScreen = () => {
   const [email, setEmail] = useState<string>('');
@@ -35,8 +37,27 @@ const LoginScreen = () => {
     navigate(SCREENS.SIGNUP);
   }
   function handleTab() {
-    setEmailId(email);
-    navigate(SCREENS.TABS);
+    let isValid: boolean = true;
+    if (!email) {
+      isValid = false;
+      alertService.ShowSingleActionAlert('Please Enter the Email');
+    } else if (!password) {
+      isValid = false;
+      alertService.ShowSingleActionAlert('Please Enter the Passord');
+    }
+    if (isValid) {
+      setEmailId(email);
+      navigate(SCREENS.TABS);
+      resetform();
+    } else {
+      console.log('Field Errors', isValid);
+    }
+  }
+  function resetform() {
+    setEmail('');
+    setPassword('');
+    setHidePassword(false);
+    setSelectedLanguage('en');
   }
 
   const changeLanguage = (lang: string) => {
@@ -45,52 +66,58 @@ const LoginScreen = () => {
     setLanguage(lang);
   };
   return (
-    <View style={logInStyles.Logincontainer}>
-      <Text style={logInStyles.LoginTitle}>{t('LOGIN.LOGIN')}</Text>
+    <CustomSafeArea>
+      <View style={logInStyles.Logincontainer}>
+        <Text style={logInStyles.LoginTitle}>{t('LOGIN.LOGIN')}</Text>
 
-      <CustomTextInput
-        InputRules={
-          (new InputRules().InputRulesData.keyboardType = 'email-address')
-        }
-        Value={email}
-        Title={t('LOGIN.EMAIL')}
-        placeholder={t('LOGIN.USERPLACE')}
-        onChangeText={onChangeText}
-        LeftImg={require('assets/Email.png')}
-      />
-      <CustomTextInput
-        InputRules={(new InputRules().InputRulesData.keyboardType = 'default')}
-        placeholder={t('LOGIN.PASSPLACE')}
-        Value={password}
-        Title={t('LOGIN.PASSWORD')}
-        secureTextentry={hidePassword}
-        iconpress={showpassword}
-        onChangeText={onChangeText}
-        LeftImg={require('assets/Lock.png')}
-        RightImg={
-          hidePassword
-            ? require('assets/Passwordhide.png')
-            : require('assets/Passwordunhide.png')
-        }
-      />
+        <CustomTextInput
+          InputRules={
+            (new InputRules().InputRulesData.keyboardType = 'email-address')
+          }
+          Value={email}
+          Title={t('LOGIN.EMAIL')}
+          placeholder={t('LOGIN.USERPLACE')}
+          onChangeText={onChangeText}
+          LeftImg={require('assets/Email.png')}
+        />
+        <CustomTextInput
+          InputRules={
+            (new InputRules().InputRulesData.keyboardType = 'default')
+          }
+          placeholder={t('LOGIN.PASSPLACE')}
+          Value={password}
+          Title={t('LOGIN.PASSWORD')}
+          secureTextentry={hidePassword}
+          iconpress={showpassword}
+          onChangeText={onChangeText}
+          LeftImg={require('assets/Lock.png')}
+          RightImg={
+            hidePassword
+              ? require('assets/Passwordhide.png')
+              : require('assets/Passwordunhide.png')
+          }
+        />
 
-      <CustomButton Title={t('LOGIN.LOGIN')} ButtonPress={handleTab} />
-      <TouchableOpacity onPress={handleSignUp}>
-        <Text style={logInStyles.signupTextLink}>
-          {t('LOGIN.LOGINPROMPT')}{' '}
-          <Text style={logInStyles.signupLink}> {t('LOGIN.SIGNUP')}</Text>
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => changeLanguage(selectedLanguage === 'en' ? 'ja' : 'en')}
-        style={logInStyles.languageButton}>
-        <Text style={logInStyles.languageButtonText}>
-          {selectedLanguage === 'en'
-            ? 'Switch to Japanese'
-            : 'Switch to English'}
-        </Text>
-      </TouchableOpacity>
-    </View>
+        <CustomButton Title={t('LOGIN.LOGIN')} ButtonPress={handleTab} />
+        <TouchableOpacity onPress={handleSignUp}>
+          <Text style={logInStyles.signupTextLink}>
+            {t('LOGIN.LOGINPROMPT')}{' '}
+            <Text style={logInStyles.signupLink}> {t('LOGIN.SIGNUP')}</Text>
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() =>
+            changeLanguage(selectedLanguage === 'en' ? 'ja' : 'en')
+          }
+          style={logInStyles.languageButton}>
+          <Text style={logInStyles.languageButtonText}>
+            {selectedLanguage === 'en'
+              ? 'Switch to Japanese'
+              : 'Switch to English'}
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </CustomSafeArea>
   );
 };
 

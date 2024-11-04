@@ -37,5 +37,6 @@
     "ACCOUNT": "Account",
     "APPEARANCE": "Appearance",
     "HELP": "Help"
-  }
+  },
+  "FIELD_MSG": "Inactive"
 }

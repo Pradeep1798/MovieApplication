@@ -10,4 +10,5 @@ export const globalColor = {
   MovieTitle: '#FFF',
   background: '#000',
   defaultloadingcolor: '#4285F4',
+  errorcolor: '#EA4235',
 };

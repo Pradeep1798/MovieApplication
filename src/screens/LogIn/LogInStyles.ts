@@ -51,7 +51,7 @@ export const logInStyles = StyleSheet.create({
   },
   Logincontainer: {
     flex: 1,
-    backgroundColor: '#000',
+    // backgroundColor: '#000',
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 20,

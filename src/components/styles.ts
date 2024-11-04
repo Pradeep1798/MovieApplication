@@ -112,4 +112,10 @@ export const compstyle = StyleSheet.create({
     width: 25,
     marginLeft: 5,
   },
+  errorinfotxt: {
+    fontSize: 12,
+    color: globalColor.errorcolor,
+    fontWeight: 'normal',
+    marginTop: 1,
+  },
 });

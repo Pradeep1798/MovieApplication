@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import {compstyle} from './styles';
 import {globalColor} from 'public/globalcolor';
+import {useTranslation} from 'react-i18next';
 
 interface ViewProps {
   Value?: string;
@@ -44,6 +45,8 @@ const CustomTextField = ({
   const [focus, setFocus] = useState(false);
   const [labelPosition] = useState(new Animated.Value(Value ? 1 : 0));
 
+  const {t} = useTranslation();
+
   useEffect(() => {
     Animated.timing(labelPosition, {
       toValue: focus || Value ? 1 : 0,
@@ -67,30 +70,37 @@ const CustomTextField = ({
   };
 
   return (
-    <View
-      style={[
-        compstyle.inputContainer,
-        {borderColor: focus ? globalColor.labelColor : globalColor.white},
-      ]}>
-      {LeftImg && <Image source={LeftImg} style={compstyle.leftImg} />}
-      <Animated.Text style={labelStyle}>{Title}</Animated.Text>
-      <TextInput
-        style={compstyle.input}
-        placeholder={focus ? placeholder : ''}
-        placeholderTextColor={globalColor.labelColor}
-        value={Value}
-        onChangeText={text => onChangeText(Title, text || '')}
-        secureTextEntry={secureTextentry}
-        keyboardType={InputRules?.keyboardType}
-        onFocus={() => setFocus(true)}
-        onBlur={() => setFocus(false)}
-      />
-      {RightImg && (
-        <TouchableOpacity onPress={iconpress}>
-          <Image source={RightImg} style={compstyle.rightImg} />
-        </TouchableOpacity>
+    <>
+      <View
+        style={[
+          compstyle.inputContainer,
+          {borderColor: focus ? globalColor.labelColor : globalColor.white},
+        ]}>
+        {LeftImg && <Image source={LeftImg} style={compstyle.leftImg} />}
+        <Animated.Text style={labelStyle}>{Title}</Animated.Text>
+        <TextInput
+          style={compstyle.input}
+          placeholder={focus ? placeholder : ''}
+          placeholderTextColor={globalColor.labelColor}
+          value={Value}
+          onChangeText={text => onChangeText(Title, text || '')}
+          secureTextEntry={secureTextentry}
+          keyboardType={InputRules?.keyboardType}
+          onFocus={() => setFocus(true)}
+          onBlur={() => setFocus(false)}
+        />
+        {RightImg && (
+          <TouchableOpacity onPress={iconpress}>
+            <Image source={RightImg} style={compstyle.rightImg} />
+          </TouchableOpacity>
+        )}
+      </View>
+      {Error && (
+        <View style={{alignItems: 'flex-start'}}>
+          <Text style={[compstyle.errorinfotxt]}>{t('FIELD_MSG')}</Text>
+        </View>
       )}
-    </View>
+    </>
   );
 };
 

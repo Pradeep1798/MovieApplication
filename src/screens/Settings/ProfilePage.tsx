@@ -3,9 +3,11 @@ import React from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import {ProfileStyles} from './Styles';
 import {useTranslation} from 'react-i18next';
+import {userDetails} from 'services/StoreProvider/Store';
 
 const ProfilePage = () => {
   const {t} = useTranslation();
+  const {emailId, usernameId} = userDetails();
   return (
     <CustomSafeArea>
       <Text style={ProfileStyles.title}>{t('TAB.SETTINGS')}</Text>
@@ -16,8 +18,10 @@ const ProfilePage = () => {
             style={ProfileStyles.profileImage}
           />
           <View style={ProfileStyles.profileInfo}>
-            <Text style={ProfileStyles.profileName}>Worlder</Text>
-            <Text style={ProfileStyles.profileEmail}>worlder@wolonote.com</Text>
+            <Text style={ProfileStyles.profileName}>
+              {usernameId ? usernameId : 'Wordler'}
+            </Text>
+            <Text style={ProfileStyles.profileEmail}>{emailId}</Text>
           </View>
         </View>
 

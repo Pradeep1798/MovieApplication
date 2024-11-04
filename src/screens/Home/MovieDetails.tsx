@@ -75,7 +75,7 @@ const MovieDetails = ({route}: any) => {
       const favoritesList = favorites ? JSON.parse(favorites) : [];
 
       const isAlreadyFavorite = favoritesList.some(
-        (item: MovieDetailsData) => item.id === movieData?.id,
+        (item: MovieDetailsData) => item?.id === movieData?.id,
       );
       if (isAlreadyFavorite) {
         alertService?.ShowSingleActionAlert(
@@ -85,7 +85,7 @@ const MovieDetails = ({route}: any) => {
       }
 
       favoritesList.push(movieData);
-      await localStorage?.SaveData('favorites', JSON.stringify(favoritesList));
+      localStorage?.SaveData('favorites', JSON.stringify(favoritesList));
       setIsFavorite(true);
       alertService?.ShowSingleActionAlert(
         'Added to Favorites. This movie has been added to your favorites.',
